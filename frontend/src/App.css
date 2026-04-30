@@ -1666,3 +1666,237 @@ nav .hamburger {
   font-style: italic;
 }
 
+
+/* PDF Preview Styles */
+.pdf_preview {
+  width: 100%;
+  height: 200px;
+  background: var(--bg-secondary);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.pdf_preview:hover {
+  background: rgba(99, 102, 241, 0.05);
+  border-color: var(--primary);
+  transform: scale(1.02);
+}
+
+.pdf_preview span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.pdf_preview span::before {
+  content: "??";
+  font-size: 2.5rem;
+}
+
+.resume-modal .modal-content iframe {
+  border-radius: var(--radius-md);
+  border: none;
+  background: #fff;
+}
+
+/* PDF Modal Styling */
+.pdf-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.pdf-fallback {
+  text-align: center;
+  padding: 10px;
+}
+.pdf-fallback a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(99, 102, 241, 0.1);
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+}
+.pdf-fallback a:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* PDF Preview Styles (Restored for Local Storage) */
+.pdf_preview {
+  width: 100%;
+  height: 200px;
+  background: var(--bg-secondary);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.pdf_preview:hover {
+  background: rgba(99, 102, 241, 0.05);
+  border-color: var(--primary);
+  transform: scale(1.02);
+}
+
+.pdf_preview span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.pdf_preview span::before {
+  content: "??";
+  font-size: 2.5rem;
+}
+
+/* Improved Local PDF Card */
+.pdf_preview {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.pdf_preview::after {
+  content: "PDF";
+  position: absolute;
+  top: 10px;
+  right: -25px;
+  background: #ff4d4d;
+  color: white;
+  padding: 2px 30px;
+  transform: rotate(45deg);
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.pdf_preview span::before {
+  content: "??" !important;
+  font-size: 4rem !important;
+  margin-bottom: 5px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Live PDF Thumbnail Styling */
+.pdf_live_preview {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.pdf_live_preview iframe {
+  width: 800px; /* Internal width */
+  height: 1100px; /* Internal height */
+  border: none;
+  transform: scale(0.25); /* Shrink it down (200px / 800px = 0.25) */
+  transform-origin: 0 0;
+  pointer-events: none; /* User clicks the overlay/wrapper instead */
+}
+
+.pdf_live_preview .preview_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: transparent;
+}
+
+.pdf_live_preview:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+/* Professional PDF Card Styling */
+.pdf_live_preview {
+  border: 1px solid #ddd !important;
+  background: #fdfdfd !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.pdf_live_preview:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--primary) !important;
+}
+
+.pdf_live_preview::before {
+  content: "RESUME PREVIEW";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  padding: 4px;
+  z-index: 5;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Force Single Page View (Hide Middle Bar) */
+.pdf_live_preview iframe {
+  width: 420px !important; /* Narrower width forces single page */
+  height: 600px !important; 
+  transform: scale(0.48) !important; /* Adjusted scale to fit the box */
+  transform-origin: 0 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Close Button Visibility Fix */
+.resume-modal .modal-content .close {
+  position: absolute !important;
+  top: 10px !important;
+  right: 15px !important;
+  color: #333 !important; /* Dark color for visibility */
+  z-index: 1000 !important;
+  font-size: 2rem !important;
+  background: rgba(255, 255, 255, 0.8);
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  line-height: 0;
+  padding-bottom: 4px;
+}
+
+.resume-modal .modal-content .close:hover {
+  background: var(--danger);
+  color: #fff !important;
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Ensure modal content has enough padding for the close button */
+.resume-modal .modal-content {
+  padding-top: 50px !important;
+  background: #fff !important;
+  border-radius: var(--radius-md);
+}

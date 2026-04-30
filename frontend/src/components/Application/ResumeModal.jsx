@@ -7,7 +7,24 @@ const ResumeModal = ({ imageUrl, onClose }) => {
         <span className="close" onClick={onClose}>
           &times;
         </span>
-        <img src={imageUrl} alt="resume" />
+        {imageUrl.endsWith(".pdf") ? (
+          <div className="pdf-container">
+            <iframe
+              src={imageUrl}
+              width="100%"
+              height="600px"
+              title="Resume Viewer"
+              frameBorder="0"
+            />
+            <div className="pdf-fallback">
+              <a href={imageUrl} target="_blank" rel="noreferrer">
+                View PDF in Full Screen
+              </a>
+            </div>
+          </div>
+        ) : (
+          <img src={imageUrl} alt="resume" />
+        )}
       </div>
     </div>
   );

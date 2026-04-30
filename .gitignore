@@ -25,3 +25,8 @@ dist-ssr
 *.sw?
 .env
 .env.local
+
+# Local uploads and temp files
+/backend/CVs/
+/backend/tmp/
+

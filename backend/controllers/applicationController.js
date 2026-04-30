@@ -4,6 +4,8 @@ import { Application } from "../models/applicationSchema.js";
 import { Job } from "../models/jobSchema.js";
 import cloudinary from "cloudinary";
 
+import path from "path";
+
 export const postApplication = catchAsyncErrors(async (req, res, next) => {
   const { role } = req.user;
   if (role === "Employer") {
@@ -35,17 +37,13 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler("Invalid file type. Please upload a PNG, JPG, WEBP or PDF file.", 400)
     );
   }
-  const cloudinaryResponse = await cloudinary.uploader.upload(
-    resume.tempFilePath
-  );
+  
+  // Local Storage Logic
+  const fileName = `${Date.now()}_${resume.name}`;
+  const uploadPath = path.join(process.cwd(), "CVs", fileName);
+  
+  await resume.mv(uploadPath);
 
-  if (!cloudinaryResponse || cloudinaryResponse.error) {
-    console.error(
-      "Cloudinary Error:",
-      cloudinaryResponse.error || "Unknown Cloudinary error"
-    );
-    return next(new ErrorHandler("Failed to upload Resume to Cloudinary", 500));
-  }
   const { name, email, coverLetter, phone, address, jobId } = req.body;
   const applicantID = {
     user: req.user._id,
@@ -89,8 +87,8 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
     employerID,
     jobId,
     resume: {
-      public_id: cloudinaryResponse.public_id,
-      url: cloudinaryResponse.secure_url,
+      public_id: fileName, // Using filename as public_id for local storage
+      url: `http://localhost:4000/CVs/${fileName}`,
     },
   });
   res.status(200).json({

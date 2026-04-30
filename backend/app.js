@@ -9,7 +9,10 @@ import { errorMiddleware } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 
+import path from "path";
+
 const app = express();
+app.use("/CVs", express.static("CVs"));
 config({ path: "./config/config.env" });
 
 app.use(
@@ -27,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   fileUpload({
     useTempFiles: true,
-    tempFileDir: "/tmp/",
+    tempFileDir: "tmp",
   })
 );
 app.use("/api/v1/user", userRouter);
