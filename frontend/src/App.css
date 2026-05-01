@@ -347,27 +347,32 @@ nav .hamburger {
   height: 52px;
   border-radius: var(--radius-md);
   border: 1.5px solid var(--border);
-  background: var(--bg-card);
+  background: var(--bg-card) !important;
   overflow: hidden;
   transition: var(--transition);
+  width: 100%;
 }
 .authPage .container form .inputTag div:focus-within {
-  border-color: var(--border-focus);
+  border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(99,102,241,0.12);
 }
 .authPage .container form .inputTag div input,
 .authPage .container form .inputTag div select {
-  background: transparent;
-  color: var(--text-primary);
+  background: transparent !important;
+  color: var(--text-primary) !important;
   padding: 0 16px;
-  border: none;
+  border: none !important;
   width: 100%;
   height: 100%;
   font-size: 0.95rem;
+  outline: none !important;
 }
-.authPage .container form .inputTag div input::placeholder { color: var(--text-muted); }
-.authPage .container form .inputTag div input:focus,
-.authPage .container form .inputTag div select:focus { outline: none; }
+
+/* Dark mode select options fix */
+[data-theme="dark"] .authPage .container form .inputTag div select option {
+  background-color: #18181b;
+  color: #fff;
+}
 
 .authPage .container form .inputTag div svg {
   width: 52px;
@@ -397,8 +402,6 @@ nav .hamburger {
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 8px 28px rgba(99,102,241,0.55);
 }
-.authPage .container form button span { cursor: pointer; }
-
 .authPage .container form a {
   padding: 14px;
   background: transparent;
@@ -494,9 +497,10 @@ nav .hamburger {
 .heroSection .container .title h1 {
   color: var(--text-primary);
   line-height: 1.1;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
 }
 .heroSection .container .title p {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
   max-width: 480px;
   color: var(--text-secondary);
   line-height: 1.75;
@@ -1126,9 +1130,12 @@ nav .hamburger {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(239,68,68,0.45);
 }
-@media (max-width: 768px) {
-  .job_seeker_card { flex-direction: column; align-items: flex-start; }
-  .job_seeker_card .resume { width: 100%; flex: none; }
+@media (max-width: 900px) {
+  .job_seeker_card { flex-direction: column; align-items: stretch; gap: 20px; }
+  .job_seeker_card .detail { flex: none; }
+  .job_seeker_card .resume { width: 100%; height: 280px; flex: none; }
+  .job_seeker_card .btn_area { flex: none; width: 100%; }
+  .job_seeker_card .btn_area button { width: 100%; }
 }
 
 /* ========== POST JOB ========== */
@@ -1267,17 +1274,30 @@ nav .hamburger {
   border-radius: var(--radius-lg);
   padding: 24px;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 24px;
   transition: var(--transition);
+}
+@media (min-width: 1024px) {
+  .myJobs .container .banner .card {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }
 .myJobs .container .banner .card:hover {
   border-color: var(--primary);
   box-shadow: var(--shadow-md);
 }
 .myJobs .container .banner .card .content {
-  flex: 3;
-  display: flex;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 24px;
+}
+@media (min-width: 768px) {
+  .myJobs .container .banner .card .content {
+    grid-template-columns: 1fr 2fr;
+  }
 }
 .myJobs .container .banner .card .content span {
   font-size: 0.85rem;
@@ -1312,13 +1332,11 @@ nav .hamburger {
 .myJobs .container .banner .card .content textarea:focus { outline: none; }
 
 .myJobs .container .banner .card .content .short_fields {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 .myJobs .container .banner .card .content .long_field {
-  flex: 2;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1330,6 +1348,7 @@ nav .hamburger {
   gap: 6px;
 }
 .myJobs .container .banner .card .content .short_fields div div {
+  display: flex;
   flex-direction: row;
   gap: 12px;
   align-items: center;
@@ -1341,7 +1360,8 @@ nav .hamburger {
   border: none;
   padding: 6px 4px;
   height: auto;
-  resize: none;
+  min-height: 100px;
+  resize: vertical;
 }
 .myJobs .container .banner .card .content .long_field textarea:disabled { color: var(--text-muted); }
 .myJobs .container .banner .card .content .long_field textarea:enabled {
@@ -1351,16 +1371,26 @@ nav .hamburger {
 .myJobs .container .banner .card .content .long_field textarea:focus { outline: none; }
 
 .myJobs .container .banner .card .button_wrapper {
-  flex: 0.8;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 12px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+@media (min-width: 1024px) {
+  .myJobs .container .banner .card .button_wrapper {
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid var(--border);
+    padding-left: 20px;
+    width: 140px;
+  }
 }
 .myJobs .container .banner .card .button_wrapper .edit_btn,
 .myJobs .container .banner .card .button_wrapper .delete_btn {
-  width: 110px;
+  flex: 1;
+  min-width: 100px;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1899,4 +1929,29 @@ nav .hamburger {
   padding-top: 50px !important;
   background: #fff !important;
   border-radius: var(--radius-md);
+}
+
+/* Logo Styling Improvements */
+nav .container .logo {
+  width: auto !important;
+  height: 45px !important;
+  border-radius: 8px !important;
+  background: white; /* Ensures readability since logo has black text */
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2) !important;
+}
+
+.main-logo {
+  height: 100%;
+  width: auto;
+  object-fit: contain !important;
+}
+
+@media (max-width: 480px) {
+  nav .container .logo {
+    height: 38px !important;
+    padding: 2px 6px;
+  }
 }

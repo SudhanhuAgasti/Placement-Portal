@@ -43,7 +43,7 @@ const Navbar = () => {
     <nav className={isAuthorized ? "navbarShow" : "navbarHide"}>
       <div className="container">
         <div className="logo">
-          <img src="/job-portal.png" alt="logo" />
+          <img src="/logo.png" alt="logo" className="main-logo" />
         </div>
         <ul className={!show ? "menu" : "show-menu menu"}>
           <li>
