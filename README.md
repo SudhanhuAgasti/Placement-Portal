@@ -91,13 +91,6 @@ cd Placement-Portal
 3. Start the development server:
    ```bash
    npm run dev
-   ```
-
----
-
-## 📸 Screenshots
-
-*(Coming Soon - Add your project screenshots here)*
 
 ---
 
@@ -110,5 +103,5 @@ This project is licensed under the MIT License.
 ## 👨‍💻 Developed By
 **Sudhanshu Kumar Agasti**
 - [GitHub](https://github.com/SudhanhuAgasti)
-- [LinkedIn](https://www.linkedin.com/in/sudhanshuagasti/) (Update with your link)
+- [LinkedIn](https://www.linkedin.com/in/sudhanshuagasti/)
 - YOU CAN SEE IT NOW HERE !!
