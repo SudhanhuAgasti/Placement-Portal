@@ -10,6 +10,7 @@ const MyApplications = () => {
   const [applications, setApplications] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [resumeImageUrl, setResumeImageUrl] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const { isAuthorized } = useContext(Context);
   const navigateTo = useNavigate();
@@ -22,6 +23,7 @@ const MyApplications = () => {
       }
       if (!user) return; // Wait for user to load
 
+      setLoading(true);
       if (user.role === "Employer") {
         axios
           .get("http://localhost:4000/api/v1/application/employer/getall", {
@@ -29,7 +31,9 @@ const MyApplications = () => {
           })
           .then((res) => {
             setApplications(res.data.applications);
-          });
+            setLoading(false);
+          })
+          .catch(() => setLoading(false));
       } else {
         axios
           .get("http://localhost:4000/api/v1/application/jobseeker/getall", {
@@ -37,10 +41,13 @@ const MyApplications = () => {
           })
           .then((res) => {
             setApplications(res.data.applications);
-          });
+            setLoading(false);
+          })
+          .catch(() => setLoading(false));
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong!");
+      setLoading(false);
     }
   }, [isAuthorized, user, navigateTo]);
 
@@ -103,7 +110,9 @@ const MyApplications = () => {
       {user && user.role === "Job-Seeker" ? (
         <div className="container">
           <h1>My Applications</h1>
-          {applications.length <= 0 ? (
+          {loading ? (
+            Array.from({ length: 3 }).map((_, i) => <SkeletonAppCard key={i} />)
+          ) : applications.length <= 0 ? (
             <>
               {" "}
               <h4>No Applications Found</h4>{" "}
@@ -124,7 +133,9 @@ const MyApplications = () => {
       ) : (
         <div className="container">
           <h1>Applications From Students</h1>
-          {applications.length <= 0 ? (
+          {loading ? (
+            Array.from({ length: 3 }).map((_, i) => <SkeletonAppCard key={i} />)
+          ) : applications.length <= 0 ? (
             <>
               <h4>No Applications Found</h4>
             </>
@@ -150,6 +161,21 @@ const MyApplications = () => {
 };
 
 export default MyApplications;
+
+const SkeletonAppCard = () => {
+  return (
+    <div className="skeleton-app-card">
+      <div className="detail">
+        <div className="skeleton skeleton-title"></div>
+        <div className="skeleton skeleton-text" style={{ width: "80%" }}></div>
+        <div className="skeleton skeleton-text" style={{ width: "60%" }}></div>
+        <div className="skeleton skeleton-text" style={{ width: "40%" }}></div>
+      </div>
+      <div className="resume skeleton"></div>
+      <div className="skeleton skeleton-text" style={{ width: "100%", height: "40px" }}></div>
+    </div>
+  );
+};
 
 const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
   return (

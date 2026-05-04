@@ -1955,3 +1955,83 @@ nav .container .logo {
     padding: 2px 6px;
   }
 }
+
+/* ========== SKELETON LOADING ========== */
+.skeleton {
+  background: #e2e8f0;
+  background: linear-gradient(
+    110deg,
+    #ececec 8%,
+    #f5f5f5 18%,
+    #ececec 33%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .skeleton {
+  background: #1e1e1e;
+  background: linear-gradient(
+    110deg,
+    #252525 8%,
+    #303030 18%,
+    #252525 33%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.skeleton-text {
+  height: 0.8rem;
+  margin-bottom: 0.6rem;
+  width: 100%;
+}
+
+.skeleton-title {
+  height: 1.4rem;
+  margin-bottom: 1rem;
+  width: 70%;
+}
+
+.skeleton-job-card {
+  height: 180px;
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.skeleton-app-card {
+  height: 250px;
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 200px 100px;
+  gap: 20px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .skeleton-app-card {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+

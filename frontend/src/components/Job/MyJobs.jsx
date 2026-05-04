@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
   const [editingMode, setEditingMode] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { isAuthorized, user } = useContext(Context);
 
   const navigateTo = useNavigate();
@@ -16,14 +17,17 @@ const MyJobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
+        setLoading(true);
         const { data } = await axios.get(
           "http://localhost:4000/api/v1/job/getmyjobs",
           { withCredentials: true }
         );
         setMyJobs(data.myJobs);
+        setLoading(false);
       } catch (error) {
         toast.error(error.response.data.message);
         setMyJobs([]);
+        setLoading(false);
       }
     };
     fetchJobs();
@@ -88,7 +92,18 @@ const MyJobs = () => {
       <div className="myJobs page">
         <div className="container">
           <h1>Your Posted Jobs</h1>
-          {myJobs.length > 0 ? (
+          {loading ? (
+            <div className="banner">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div className="skeleton-job-card" key={i} style={{ height: "350px" }}>
+                  <div className="skeleton skeleton-title"></div>
+                  <div className="skeleton skeleton-text" style={{ width: "80%" }}></div>
+                  <div className="skeleton skeleton-text" style={{ width: "60%" }}></div>
+                  <div className="skeleton skeleton-text" style={{ width: "90%", height: "100px", marginTop: "10px" }}></div>
+                </div>
+              ))}
+            </div>
+          ) : myJobs.length > 0 ? (
             <>
               <div className="banner">
                 {myJobs.map((element) => (
