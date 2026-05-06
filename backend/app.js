@@ -12,7 +12,7 @@ import fileUpload from "express-fileupload";
 import path from "path";
 
 const app = express();
-app.use("/CVs", express.static("CVs"));
+app.use("/CVs", express.static(path.resolve("CVs")));
 config({ path: "./config/config.env" });
 
 app.use(

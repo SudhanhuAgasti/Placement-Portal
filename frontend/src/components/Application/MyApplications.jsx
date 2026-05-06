@@ -202,7 +202,7 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
           </p>
         </div>
         <div className="resume">
-          {element.resume.url.endsWith(".pdf") ? (
+          {element.resume.url.toLowerCase().endsWith(".pdf") ? (
             <div className="pdf_live_preview" onClick={() => openModal(element.resume.url)}>
               <iframe src={`${element.resume.url}#toolbar=0&navpanes=0&scrollbar=0`} title="CV Preview"></iframe>
               <div className="preview_overlay"></div>
@@ -253,7 +253,7 @@ const EmployerCard = ({ element, openModal, handleStatusUpdate }) => {
           </p>
         </div>
         <div className="resume">
-          {element.resume.url.endsWith(".pdf") ? (
+          {element.resume.url.toLowerCase().endsWith(".pdf") ? (
             <div className="pdf_live_preview" onClick={() => openModal(element.resume.url)}>
               <iframe src={`${element.resume.url}#toolbar=0&navpanes=0&scrollbar=0`} title="CV Preview"></iframe>
               <div className="preview_overlay"></div>

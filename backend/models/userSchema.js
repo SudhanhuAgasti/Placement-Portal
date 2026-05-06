@@ -14,13 +14,14 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please enter your Email!"],
     validate: [validator.isEmail, "Please provide a valid Email!"],
     lowercase: true,
+    unique: true,
   },
   phone: {
-  type: String,
-  required: [true, "Please enter your Phone Number!"],
-  minlength: 10,
-  maxlength: 10
-},
+    type: String,
+    required: [true, "Please enter your Phone Number!"],
+    minLength: [10, "Phone number must be at least 10 digits!"],
+    maxLength: [15, "Phone number cannot exceed 15 digits!"],
+  },
   password: {
     type: String,
     required: [true, "Please provide a Password!"],

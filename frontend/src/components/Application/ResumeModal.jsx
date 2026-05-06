@@ -7,7 +7,7 @@ const ResumeModal = ({ imageUrl, onClose }) => {
         <span className="close" onClick={onClose}>
           &times;
         </span>
-        {imageUrl.endsWith(".pdf") ? (
+        {imageUrl.toLowerCase().endsWith(".pdf") ? (
           <div className="pdf-container">
             <iframe
               src={imageUrl}

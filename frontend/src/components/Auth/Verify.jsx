@@ -32,7 +32,7 @@ const Verify = () => {
       setIsAuthorized(true);
       navigate("/");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "An error occurred during verification");
     }
   };
 
@@ -50,7 +50,7 @@ const Verify = () => {
       );
       toast.success(data.message);
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "An error occurred while resending OTP");
     }
   };
 
@@ -66,7 +66,7 @@ const Verify = () => {
             <img src="/job-portal.png" alt="logo" />
             <h3>VERIFY YOUR EMAIL</h3>
           </div>
-          <form>
+          <form onSubmit={handleVerify}>
             <div className="inputTag">
               <label>Email Address</label>
               <div>
@@ -91,7 +91,7 @@ const Verify = () => {
                 <RiLock2Fill />
               </div>
             </div>
-            <button type="submit" onClick={handleVerify}>
+            <button type="submit">
               <span>Verify Account</span>
             </button>
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>

@@ -5,6 +5,7 @@ import { Job } from "../models/jobSchema.js";
 import cloudinary from "cloudinary";
 
 import path from "path";
+import fs from "fs";
 
 export const postApplication = catchAsyncErrors(async (req, res, next) => {
   const { role } = req.user;
@@ -39,8 +40,15 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
   }
   
   // Local Storage Logic
-  const fileName = `${Date.now()}_${resume.name}`;
-  const uploadPath = path.join(process.cwd(), "CVs", fileName);
+  const fileName = `${Date.now()}_${resume.name.replace(/\s/g, "_")}`;
+  const cvsDir = path.resolve("CVs");
+  
+  // Ensure the CVs directory exists
+  if (!fs.existsSync(cvsDir)) {
+    fs.mkdirSync(cvsDir, { recursive: true });
+  }
+  
+  const uploadPath = path.join(cvsDir, fileName);
   
   await resume.mv(uploadPath);
 

@@ -37,7 +37,7 @@ const Register = () => {
       toast.success(data.message);
       navigate("/verify", { state: { email } });
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "An error occurred during registration");
     }
   };
 
@@ -59,7 +59,7 @@ const Register = () => {
             <img src="/job-portal.png" alt="logo" />
             <h3>CREATE A NEW ACCOUNT </h3>
           </div>
-          <form>
+          <form onSubmit={handleRegister}>
             <div className="inputTag">
               <label>Register As</label>
               <div>
@@ -99,10 +99,11 @@ const Register = () => {
               <label>Phone Number</label>
               <div>
                 <input
-                  type="number"
+                  type="tel"
                   placeholder="0123456789"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
+                  maxLength={15}
                 />
                 <FaPhoneFlip />
               </div>
@@ -125,7 +126,7 @@ const Register = () => {
                 <RiLock2Fill />
               </div>
             </div>
-            <button type="submit" onClick={handleRegister}>
+            <button type="submit">
               <span>Register</span>
             </button>
             <Link to={"/login"}>Login Now</Link>
