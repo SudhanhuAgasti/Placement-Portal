@@ -95,6 +95,7 @@ cd Placement-Portal
 ---
 
 ## 📄 License
+by the whipe value...
 
 This project is licensed under the MIT License.
 
