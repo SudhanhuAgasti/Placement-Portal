@@ -107,3 +107,4 @@ This project is licensed under the MIT License.
 - [LinkedIn](https://www.linkedin.com/in/sudhanshuagasti/)
 - YOU CAN SEE IT NOW HERE !!
 In this Placement portal u can do ur activity as u can understand  the things !!
+and the best things is here not to find foe the only jobseeakre it is also helpful for the recruiter agencies
