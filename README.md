@@ -106,3 +106,4 @@ This project is licensed under the MIT License.
 - [GitHub](https://github.com/SudhanhuAgasti)
 - [LinkedIn](https://www.linkedin.com/in/sudhanshuagasti/)
 - YOU CAN SEE IT NOW HERE !!
+In this Placement portal u can do ur activity as u can understand  the things !!
